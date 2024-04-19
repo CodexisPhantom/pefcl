@@ -21,7 +21,6 @@ const Container = styled.div`
   background: ${theme.palette.background.default};
   overflow: auto;
   height: 100%;
-  padding-bottom: ${FooterHeight};
 `;
 
 interface LoadingFallbackProps {

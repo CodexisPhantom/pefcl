@@ -1,47 +1,26 @@
-import React from 'react';
+import i18n from '@utils/i18n';
 import ReactDOM from 'react-dom';
+import styled from 'styled-components';
+import MobileApp from './views/Mobile/Mobile';
+
+import './index.css';
 
 import { HashRouter } from 'react-router-dom';
-import styled from 'styled-components';
-import image from './bg.png';
 import { NuiProvider } from 'react-fivem-hooks';
-import MobileApp from './views/Mobile/Mobile';
-import i18n from '@utils/i18n';
 import { IPhoneSettings } from '@project-error/npwd-types';
-
-const Container = styled.div`
-  position: relative;
-  width: 500px;
-  height: 1000px;
-`;
-const Background = styled.div<{ src: string }>`
-  z-index: 10;
-  background: url(${({ src }) => src});
-  position: absolute;
-  width: 500px;
-  height: 1000px;
-  pointer-events: none;
-`;
-
-const AppContainer = styled.div`
-  z-index: 2;
-  position: absolute;
-  bottom: 100px;
-  left: 50px;
-  right: 50px;
-  top: 100px;
-  display: flex;
-  flex-direction: column;
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  border-radius: 20px;
-`;
 
 const mockedSetting = {
   label: 'idk',
   value: 'idk',
 };
+
+const Container = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+`;
+
 const mockedSettings: IPhoneSettings = {
   language: mockedSetting,
   iconSet: mockedSetting,
@@ -64,12 +43,7 @@ const Root = () => (
   <HashRouter>
     <NuiProvider>
       <Container>
-        <Background src={image} />
-        <React.Suspense fallback="Loading phone">
-          <AppContainer>
-            <MobileApp i18n={i18n} settings={mockedSettings} />
-          </AppContainer>
-        </React.Suspense>
+        <MobileApp i18n={i18n} settings={mockedSettings} />
       </Container>
     </NuiProvider>
   </HashRouter>

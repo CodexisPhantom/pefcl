@@ -56,7 +56,10 @@ const SendBankUIMessage = (app: string, method: string, data: unknown) => {
   });
 
   if (GetResourceState('npwd') === 'started') {
-    npwdExports.sendNPWDMessage(app, method, data);
+    npwdExports.sendUIMessage({
+      type: method,
+      payload: data,
+    });
   }
 };
 
